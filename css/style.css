@@ -7,6 +7,10 @@ html,body{
     max-width: 500px;
 }
 
+.color-white{
+    color: white;
+}
+
 .roundless{
     border-radius: 0;
 }

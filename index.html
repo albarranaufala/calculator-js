@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container py-3 h-100">
+        <div class="card shadow mw-500px mx-auto roundless">
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="form-control roundless input-math overflow-hidden d-flex justify-content-end">
+                        <div class="flex-shrink" id="input">0</div>
+                    </div> 
+                </div>
+                <table class="w-100">
+                    <tr>
+                        <td><button id="c" class="btn btn-danger btn-block roundless">C</button></td>
+                        <td colspan="2"><button id="delete" class="btn btn-info btn-block roundless">DEL</button></td>
+                        <td><button id="divide" class="btn btn-warning btn-block roundless">&divide</button></td>
+                    </tr>
+                    <tr>
+                        <td><button id="7" class="btn btn-info btn-block roundless">7</button></td>
+                        <td><button id="8" class="btn btn-info btn-block roundless">8</button></td>
+                        <td><button id="9" class="btn btn-info btn-block roundless">9</button></td>
+                        <td><button id="times" class="btn btn-warning btn-block roundless">X</button></td>
+                    </tr>
+                    <tr>
+                        <td><button id="4" class="btn btn-info btn-block roundless">4</button></td>
+                        <td><button id="5" class="btn btn-info btn-block roundless">5</button></td>
+                        <td><button id="6" class="btn btn-info btn-block roundless">6</button></td>
+                        <td><button id="min" class="btn btn-warning btn-block roundless">-</button></td>
+                    </tr>
+                    <tr>
+                        <td><button id="1" class="btn btn-info btn-block roundless">1</button></td>
+                        <td><button id="2" class="btn btn-info btn-block roundless">2</button></td>
+                        <td><button id="3" class="btn btn-info btn-block roundless">3</button></td>
+                        <td><button id="plus" class="btn btn-warning btn-block roundless">+</button></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button id="0" class="btn btn-info btn-block roundless">0</button></td>
+                        <td><button id="dot" class="btn btn-info btn-block roundless">.</button></td>
+                        <td><button id="equals" class="btn btn-warning btn-block roundless">=</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

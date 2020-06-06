@@ -114,7 +114,10 @@ document.getElementById('delete').addEventListener('click', function(){
         INPUT.innerHTML = inputText.replaceAt(inputText.length-1, '')
         equation = INPUT.textContent
     }
-
+    if(INPUT.textContent == ''){
+        INPUT.innerHTML = '0'
+        currentNumbers = '0'
+    }
 })
 
 function calculate(fn) {
@@ -139,7 +142,8 @@ function calculate(fn) {
 }
 
 function deleteAll(){
-    INPUT.innerHTML = 0
+    isCalculated = false
+    INPUT.innerHTML = '0'
     equation = ''
     currentNumbers = '0'
 }

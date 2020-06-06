@@ -2,6 +2,7 @@ const INPUT = document.getElementById('input')
 let equation = ''
 let currentNumbers = '0'
 let isOperating = false
+let isCalculated = false
 
 for(let i = 0; i <= 9; i++){
     document.getElementById(i).addEventListener('click', function(){
@@ -27,11 +28,17 @@ document.getElementById('equals').addEventListener('click', function(){
     }
     let result = String(calculate(equation))
     INPUT.innerHTML = result
-    currentNumbers = ''
-    equation = ''
+    // currentNumbers = ''
+    // equation = ''
+    isCalculated = true
 })
 
 document.getElementById('plus').addEventListener('click', function(){
+    if(isCalculated){
+        equation = INPUT.textContent
+        currentNumbers = ''
+        isCalculated = false
+    }
     if(isOperating){
         equation = equation.replaceAt(equation.length-1, '+')
     }else{
@@ -42,6 +49,11 @@ document.getElementById('plus').addEventListener('click', function(){
 })
 
 document.getElementById('min').addEventListener('click', function(){
+    if(isCalculated){
+        equation = INPUT.textContent
+        currentNumbers = ''
+        isCalculated = false
+    }
     if(isOperating){
         equation = equation.replaceAt(equation.length-1, '-')
     }else{
@@ -52,6 +64,11 @@ document.getElementById('min').addEventListener('click', function(){
 })
 
 document.getElementById('times').addEventListener('click', function(){
+    if(isCalculated){
+        equation = INPUT.textContent
+        currentNumbers = ''
+        isCalculated = false
+    }
     if(isOperating){
         equation = equation.replaceAt(equation.length-1, '×')
     }else{
@@ -62,6 +79,11 @@ document.getElementById('times').addEventListener('click', function(){
 })
 
 document.getElementById('divide').addEventListener('click', function(){
+    if(isCalculated){
+        equation = INPUT.textContent
+        currentNumbers = ''
+        isCalculated = false
+    }
     if(isOperating){
         equation = equation.replaceAt(equation.length-1, '÷')
     }else{
@@ -71,20 +93,29 @@ document.getElementById('divide').addEventListener('click', function(){
     isOperating = true
 })
 
-// document.getElementById('delete').addEventListener('click', function(){
-//     if(isOperating || equation.charAt(equation.length-1) == '+' || equation.charAt(equation.length-1) == '-' || equation.charAt(equation.length-1) == '×' || equation.charAt(equation.length-1) == '÷' ){
-//         equation = equation.replaceAt(equation.length-1, '')
-//         if(!isOperating){
-//             let i = equation.length-1
-//             while(equation.charAt(i) != '+' || equation.charAt(i) != '-' || equation.charAt(i) != '+' || equation.charAt(i) != '+')
-//         }
-//         INPUT.innerHTML = equation
-//     }
-//     else{
-//         currentNumbers = currentNumbers.replaceAt(currentNumbers.length-1, '')
-//         INPUT.innerHTML = equation + currentNumbers
-//     }
-// })
+document.getElementById('delete').addEventListener('click', function(){
+    let inputText = INPUT.textContent
+    if(!(inputText.charAt(inputText.length-1) == '')){
+        if(!(inputText.charAt(inputText.length-1) > '0' &&  inputText.charAt(inputText.length-1) < '9')){
+            let number = ''
+            for(let i = inputText.length - 2; i >= 0; i--){
+                if((inputText.charAt(inputText.length-1) > '0' &&  inputText.charAt(inputText.length-1) < '9')){
+                    number = inputText.charAt(i) + number
+                }
+                else{
+                    break
+                }
+            }
+            currentNumbers = number
+        }
+        else{
+            currentNumbers = String(currentNumbers).replaceAt(currentNumbers.length-1, '')
+        }
+        INPUT.innerHTML = inputText.replaceAt(inputText.length-1, '')
+        equation = INPUT.textContent
+    }
+
+})
 
 function calculate(fn) {
     let newEquation = ''
@@ -98,6 +129,11 @@ function calculate(fn) {
         else{
             newEquation += equation.charAt(i)
         }
+        if(i == equation.length-1){
+            if(!(equation.charAt(i) > '0' &&  equation.charAt(i) < '9')){
+                newEquation = newEquation.replaceAt(i, '')
+            }
+        }
     }
     return eval(newEquation)
 }
@@ -109,6 +145,11 @@ function deleteAll(){
 }
 
 function addNumber(newNumber){
+    if(isCalculated){
+        equation = ''
+        currentNumbers = ''
+        isCalculated = false
+    }
     if(isOperating){
         currentNumbers = '0'
     }
